@@ -1,0 +1,5 @@
+:name "efb_emacs"
+:node-sname "efb-emacs"
+:lib-dirs '("deps" "_build/default/lib")
+:app-include-dirs '("include")
+:xref-error-whitelist '("lager:*")
