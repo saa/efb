@@ -3,7 +3,7 @@
 %% API exports
 -export([send_notification/3]).
 
--define(EFB_API_URL, "http://graph.facebook.com").
+-define(EFB_API_URL, "https://graph.facebook.com").
 
 -type result() :: ok | {error, any()}.
 
@@ -56,13 +56,10 @@ get_access_token(ClientId, ClientSecret) when is_list(ClientId),
                             "&client_secret=", ClientSecret,
                             "&grant_type=client_credentials"]),
     case hreq(get, URL) of
+        {ok, <<"access_token=", AccessToken/binary>>} ->
+            {ok, AccessToken};
         {ok, Response} ->
-            case lists:keyfind(<<"access_token">>, 1, Response) of
-                {<<"access_token">>, AccessToken} ->
-                    {ok, AccessToken};
-                false ->
-                    {error, Response}
-            end;
+            {error, Response};
         {error, _Reason} = Error ->
             Error
     end.

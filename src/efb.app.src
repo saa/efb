@@ -1,9 +1,12 @@
 {application, efb,
- [{description, "An OTP library"}
- ,{vsn, "0.1.0"}
- ,{registered, []}
- ,{applications,
-    [kernel,stdlib]}
- ,{env,[]}
- ,{modules, []}
+ [{description, "Erlang library for facebook API"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib,
+    hackney
+   ]},
+  {env,[]},
+  {modules, []}
  ]}.
