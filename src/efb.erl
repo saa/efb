@@ -15,10 +15,14 @@
 send_notification(UserId, Template, Href) when is_integer(UserId) ->
     send_notification(integer_to_binary(UserId), Template, Href);
 send_notification(UserId, Template, Href) ->
-    request(send_notification, #{ user_id => UserId,
-                                  template => Template,
-                                  href => Href
-                                }).
+    Result = request(send_notification, #{ user_id => UserId,
+                                           template => Template,
+                                           href => Href
+                                         }),
+    case Result of
+        {ok, _} -> ok;
+        {error, _Reason} = Error -> Error
+    end.
 
 %%====================================================================
 %% Internal functions
