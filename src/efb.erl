@@ -1,6 +1,7 @@
 -module(efb).
 
 %% API exports
+-export([send_notification/2]).
 -export([send_notification/3]).
 
 -define(EFB_API_URL, "https://graph.facebook.com").
@@ -10,6 +11,10 @@
 %%====================================================================
 %% API functions
 %%====================================================================
+
+-spec send_notification(non_neg_integer() | binary(), binary()) -> ok.
+send_notification(UserId, Template) ->
+    send_notification(UserId, Template, <<"">>).
 
 -spec send_notification(non_neg_integer() | binary(), binary(), binary()) -> ok.
 send_notification(UserId, Template, Href) when is_integer(UserId) ->
