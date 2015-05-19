@@ -2,6 +2,7 @@
  [{description, "Erlang library for facebook API"},
   {vsn, "0.1.0"},
   {registered, []},
+  {mod, {'efb_app', []}},
   {applications,
    [kernel,
     stdlib,
