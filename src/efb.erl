@@ -26,7 +26,8 @@ send_notification(UserId, Template, Href) ->
                                          }),
     case Result of
         {ok, _} -> ok;
-        {error, _Reason} = Error -> Error
+        {error, _Reason} = Error -> Error;
+        Any -> Any
     end.
 
 %%====================================================================
