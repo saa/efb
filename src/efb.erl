@@ -21,7 +21,7 @@ send_notification(UserId, Template, Href) when is_integer(UserId) ->
     send_notification(integer_to_binary(UserId), Template, Href);
 send_notification(UserId, Template, Href) ->
     Result = request(send_notification, #{ user_id => UserId,
-                                           template => Template,
+                                           template => hackney_url:urlencode(Template),
                                            href => Href
                                          }),
     case Result of
